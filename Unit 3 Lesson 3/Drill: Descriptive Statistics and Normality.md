@@ -174,3 +174,16 @@ print(np.std(f, ddof=1))
 From the doc description, the intra-group variation of mutual out-groups makes sense.  Total sense, since each population would have an emotional configuration.  That configuration would find some mutual relationship relative to group but only because the base human model the groups are a collection of, would not variate.
 
 Reading Wikipedia, of course it's more complex than that.  You can use this to measure our what groups are a collection of, relative to each other and relative to the collection's species "kind-"type is.  You can apply this test to brute force discovering what causes are "model significant".  We intuite a model, such like Asian or Frog, but to discover what they are you can feature model, or material model.
+
+#Task 1
+
+```python
+beta = np.random.beta(20, .5, 1000)
+plt.hist(beta)
+plt.axvline(beta.mean(), color='b', linewidth=1)
+plt.axvline(np.median(beta), color='g', linewidth=1)
+plt.axvline(np.std(beta, ddof=1))
+plt.show()
+```
+
+![png](task%201.png)
