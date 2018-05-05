@@ -175,15 +175,49 @@ From the doc description, the intra-group variation of mutual out-groups makes s
 
 Reading Wikipedia, of course it's more complex than that.  You can use this to measure our what groups are a collection of, relative to each other and relative to the collection's species "kind-"type is.  You can apply this test to brute force discovering what causes are "model significant".  We intuite a model, such like Asian or Frog, but to discover what they are you can feature model, or material model.
 
-#Task 1
+# Task 1
 
 ```python
 beta = np.random.beta(20, .5, 1000)
 plt.hist(beta)
 plt.axvline(beta.mean(), color='b', linewidth=1)
 plt.axvline(np.median(beta), color='g', linewidth=1)
-plt.axvline(np.std(beta, ddof=1))
+plt.show()
+```
+![png](task%201v2.png)
+
+Mean is a blue line. Median is a green line. Here the graph shows that the median value is as expected, expressed as the value where most of the values reside.  Mean is to the left of that, capturing the offset of the outliers to the left.  If I had to pick one line as capturing the most data, I would say that the mean does, as it seems to express 50% of the blue area for the left and the right.
+
+A graph with standard deviations on mean:
+
+```python
+#adding lines:
+plt.axvline(beta.mean() + np.std(beta, ddof=0), color = 'r')
+plt.axvline(beta.mean() - np.std(beta, ddof=0), color = 'r')
+```
+
+![png](task%1v3.png)
+
+Common characteristics of choosing a correct mean/standard deviation should determine what is an expected "normal" for a distribution that is, out of a random sample, what we would expect to be the value 68% of the time out of a hundred.  Such values within the red lines (standard devation within 1) should be centered on the selected average (mean or median) for each graph.  So if the graph has distributions that are shifted on one side, then standard deviation and mean should also be to that side.  if the graph has a valley (where values are split either side of a space) then standard devation and mean should be in the valley, with a tendacy to shift towards the side of the valley where more values reside.
+
+# Task 2
+
+```python
+x = np.random.normal(10, 1, 1000)
+y = np.random.normal(5, .5, 1000)
+z = np.concatenate((x,y), axis=0)
+#print(z)
+
+plt.axvline(np.median(z), color='g', linewidth=1)
+plt.hist(z, color='blue', bins=np.arange(-10, 40), alpha=.5) 
+#plt.hist(y, color='red', bins=np.arange(-10, 40), alpha=.5)
+
+plt.axvline(z.mean() + np.std(z, ddof=0), color = 'r')
+plt.axvline(z.mean() - np.std(z, ddof=0), color = 'r')
+
 plt.show()
 ```
 
-![png](task%201.png)
+What I expect to see, as there are two normal distributions is that there are two peaks, and one valley.  Because the two distributions are combined there should be a mean 
+
+![png](task2.png)
