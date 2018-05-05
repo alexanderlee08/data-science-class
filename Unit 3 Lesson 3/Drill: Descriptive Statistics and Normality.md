@@ -218,6 +218,12 @@ plt.axvline(z.mean() - np.std(z, ddof=0), color = 'r')
 plt.show()
 ```
 
-What I expect to see, as there are two normal distributions is that there are two peaks, and one valley.  Because the two distributions are combined there should be a mean 
+What I expect to see, as there are two normal distributions is that there are two peaks, and one valley.  Because the two distributions are combined there should be a mean in the valley.  Given that one of the distributions has a tighter standard deviation, the mean should be closer spatially to that peak.
 
 ![png](task2.png)
+
+This graphs shows exactly what I have stated.  Since it hard to see, here is a close up of the interesting area.
+
+![png](task2v2.png)
+
+Upon some further thought and observing the graph, it is also not surprising that the two standard deviations (above and below the mean) sit at what appears to be the mean of the original two distributions.  I hadn't thought of this correlation but that is exactly what has occured visually... This makes sense, since roughly 50% of each distribution would be included as roughly 50% above and below the mean of the new distribution. 
