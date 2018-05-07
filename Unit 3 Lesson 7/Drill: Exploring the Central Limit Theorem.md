@@ -165,3 +165,57 @@ Answer 3: This seems in fact true... in that matching the variables with limitin
 
 The moral seems to be that smaller sample sizes are more error prone, essentially introducing more noise into the sample, compounding any noise as variation already within the normal population.  Thus the Central Limit Theorem seems to be that large enough samples eliminate noise, since noise regularizes out as actually independent of the model that is being captured.  More data can be used to refine the model or greater refined model can be used to predict more refined data.  Interesting!
 
+# Task 1 & 2
+
+```python
+pop1 = np.random.binomial(10, 0.2, 1000)
+pop2 = np.random.binomial(10, 0.5, 1000) 
+
+plt.hist(pop1, alpha=0.5, label='Population 1') 
+plt.hist(pop2, alpha=0.5, label='Population 2') 
+plt.axvline(pop1.mean(), color = 'r')
+plt.axvline(pop1.mean() + np.std(pop1, ddof=0), color = 'b')
+plt.axvline(pop1.mean() - np.std(pop1, ddof=0), color = 'b')
+plt.axvline(pop2.mean(), color = 'r')
+plt.axvline(pop2.mean() + np.std(pop2, ddof=0), color = 'g')
+plt.axvline(pop2.mean() - np.std(pop2, ddof=0), color = 'g')
+plt.legend(loc='upper right') 
+plt.show()
+
+print("pop1 " + str(pop1.mean()) + " " + str(np.std(pop1, ddof = 0))) 
+print("pop2 " + str(pop2.mean()) + " " + str(np.std(pop2, ddof = 0)))
+```
+
+Chart at 1000
+![png](7task1v2.png)
+
+pop1 1.955 1.296524199542762
+pop2 4.981 1.6145089036608005
+
+Chart at 20
+![png](7taskv3.png)
+
+pop1 2.0 1.0954451150103321
+pop2 5.1 1.8681541692269406
+
+Between populations of 1000 and 20 we see that the mean is more accurate with a smaller variation but that with larger populations, there is less variance.  I suppose this is the case because as these functions are mathematically generated from the same process, the smaller population acts as a more "random" sample of instances of generation.  I would assume that as the population gets increasingly larger, the mean and standard deviation would approach more exact values.  I would assume that the p value as between between 0 and 1 is the percentage of success, so as the p value is greater, so the standard deviation would increase as you get more chances of success.  You see that in the chart, as the green lines marking the borders of pop2 cover a larger area than pop1.
+
+# Task 3 
+
+![png](7task3.png)
+
+pop1 2.928 1.4278711426455821
+pop2 5.018 1.59489059185889
+
+Ttest_indResult(statistic=-29.903437818255984, pvalue=2.0214026322742818e-162)
+
+# Task 4
+
+![png](7task4.png)
+
+pop1 3.965 1.5381076035180374
+pop2 5.061 1.5922559467623287
+
+Ttest_indResult(statistic=-14.166219016717703, pvalue=1.7538001608752173e-43)
+
+With a closer p value between pop1 and pop2 there is more overlap, so we see that statistic is converging.  The p value however seems to change significantly each time I run that block in python.
